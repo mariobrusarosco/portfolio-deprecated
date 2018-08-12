@@ -7,21 +7,21 @@ import App from 'components/App'
 console.log(`I'm the one who knocks`)
 
 render(
-  <AppContainer>
+  // <AppContainer>
     <App />
-  </AppContainer>,
-  document.querySelector('[data-js="app"]')
+  // </AppContainer>,
+  ,document.querySelector('[data-js="app"]')
 )
-
-if (module.hot) {
-  module.hot.accepts('./components/App', () => {
-    const NextApp = require('./components/App').default
-
-    render(
-      <AppContainer>
-        <NextApp />
-      </AppContainer>,
-      document.querySelector('[data-js="app"]')
-    )
-  })
-}
+//
+// if (module.hot) {
+//   module.hot.accepts('./components/App', () => {
+//     const NextApp = require('./components/App').default
+//
+//     render(
+//       <AppContainer>
+//         <NextApp />
+//       </AppContainer>,
+//       document.querySelector('[data-js="app"]')
+//     )
+//   })
+// }

@@ -1,4 +1,4 @@
-import headerEnhancer from 'enhancers/Header'
+// import headerEnhancer from 'enhancers/Header'
 
 const Header = () =>
   <header className="header">
@@ -39,5 +39,5 @@ const Header = () =>
     */}
   </header>
 
-
-export default headerEnhancer(Header)
+export default Header
+// export default headerEnhancer(Header)

@@ -7,15 +7,15 @@ module.exports = {
   devtool: 'source-map',
   mode: 'development',
   entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
+    // 'react-hot-loader/patch',
+    // 'webpack-dev-server/client?http://localhost:3000',
+    // 'webpack/hot/only-dev-server',
     path.join(__dirname, 'src','index')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: 'dist'
+    publicPath: '/static/'
   },
   module: {
     rules: [
@@ -31,7 +31,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       'React': 'react'
     }),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin()
   ],
   resolve: {
     modules: [
