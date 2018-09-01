@@ -1,0 +1,49 @@
+.section-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+.section-icon::after,
+.section-icon::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  /* opacity: 0; */
+  box-sizing: border-box;
+  transform: scale(1);
+  animation-name: pulse;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.34, 0.48, 0.53, 1.02);
+  animation-duration: 3s;
+}
+
+* {
+  box-sizing: border-box;
+}
+.section-icon::before {
+  /* animation-duration: 1.5s; */
+  animation-delay: 1.5s;
+}
+.section-icon::after {
+
+
+}
+
+
+@keyframes pulse {
+  20% {
+    /* opacity: 1; */
+  }
+  100% {
+    transform: scale(3);
+    /* opacity: 0; */
+  }
+}
