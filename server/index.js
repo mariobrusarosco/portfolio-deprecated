@@ -1,6 +1,5 @@
 const express = require("express"),
-  app = express(),
-  PORT = process.env.PORT || 8080;
+  app = express();
 
 app.get("/", (req, res) => {
   console.log(req.method);
@@ -8,10 +7,4 @@ app.get("/", (req, res) => {
   res.send({ hi: "there" });
 });
 
-app.get("*", (req, res) => {
-  console.log(req.method);
-  console.log(req.url);
-  res.send({ hi: "generic" });
-});
-
-app.listen(PORT);
+app.listen(process.env.PORT || 5000);
