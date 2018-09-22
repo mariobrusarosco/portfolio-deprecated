@@ -80,16 +80,34 @@ const prodConfig = env => ({
         test: /\.scss$/,
         use: [
           {
+<<<<<<< HEAD
             loader: miniCSSExtractPlugin.loader
           },
           {
             loader: 'css-loader'
+=======
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1
+            },
+>>>>>>> ba71376f680361e5531f7b8878ea20a75c733c7b
           },
           {
             loader: 'postcss-loader'
           },
           {
+<<<<<<< HEAD
             loader: 'sass-loader'
+=======
+            loader: 'sass-loader',
+            options: {
+             includePaths: ["src/styles/config"]
+           }
+>>>>>>> ba71376f680361e5531f7b8878ea20a75c733c7b
           }
         ]
       },
