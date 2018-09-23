@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
-import Counter from './counter.js'
+import Main from './components/Main'
+import store from './redux/store'
 
 ReactDOM.render(
-  <div>
-    <Counter />
-  </div>,
+  <Provider store={store}>
+    <Main />
+  </Provider>,
   document.querySelector('#app')
 )

@@ -3,7 +3,7 @@ const webpack = require("webpack")
 const htmlWebpackPlugin = require("html-webpack-plugin")
 const miniCSSExtractPlugin = require('mini-css-extract-plugin')
 const optimizeCSSAssets = require('optimize-css-assets-webpack-plugin')
-// const babelMinify = require('babel-minify-webpack-plugin')
+const react = require('react')
 // const uglify = require('uglifyjs-webpack-plugin')
 
 const prodConfig = env => ({
@@ -127,7 +127,7 @@ const prodConfig = env => ({
   plugins: [
     new htmlWebpackPlugin({
       template: './src/index.ejs',
-      title: 'Test'
+      title: 'Mario Brusarosco'
     }),
     new optimizeCSSAssets(),
     new miniCSSExtractPlugin({
@@ -137,9 +137,16 @@ const prodConfig = env => ({
       'ENV': JSON.stringify(process.env.ENV),
       'APP_NAME': JSON.stringify(process.env.APP_NAME)
     }),
-    // new babelMinify()
-    // new uglify()
-  ]
+		new webpack.ProvidePlugin({
+			'React': 'react',
+		})
+  ],
+	resolve: {
+		modules: [
+			path.resolve('src'),
+			path.resolve('node_modules')
+		]
+	}
 })
 
 module.exports = prodConfig()

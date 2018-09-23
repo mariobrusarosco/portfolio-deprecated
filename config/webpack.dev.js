@@ -15,6 +15,7 @@ const devConfig = env => ({
     path: path.resolve(__dirname, "../dist"),
     publicPath: '/'
   },
+	devtool: 'sourcemap',
   devServer : {
     contentBase: 'dist',
     hot: true,
@@ -130,14 +131,23 @@ const devConfig = env => ({
   plugins: [
     new htmlWebpackPlugin({
       template: './src/index.ejs',
-      title: 'Test'
+      title: 'Mario Brusarosco'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
+		new webpack.DefinePlugin({
       'ENV': JSON.stringify(process.env.ENV),
       'APP_NAME': JSON.stringify(process.env.APP_NAME)
-    })
-  ]
+    }),
+		new webpack.ProvidePlugin({
+			'React': 'react',
+		})
+  ],
+	resolve: {
+		modules: [
+			path.resolve('src'),
+			path.resolve('node_modules')
+		]
+	}
 })
 
 module.exports = devConfig()
