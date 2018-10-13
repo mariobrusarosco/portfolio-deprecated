@@ -1,10 +1,17 @@
 const path = require("path")
-const webpack = require("webpack")
 const htmlWebpackPlugin = require("html-webpack-plugin")
 const miniCSSExtractPlugin = require('mini-css-extract-plugin')
 const optimizeCSSAssets = require('optimize-css-assets-webpack-plugin')
-const react = require('react')
-// const uglify = require('uglifyjs-webpack-plugin')
+const compressionPlugin = require('compression-webpack-plugin')
+const brotliPlugin = require('brotli-webpack-plugin')
+const globalVariables = require('./global-variables')
+const globalVendors = require('./global-vendors')
+const babelConfig = require('./babel-config')
+const cssConfig = require('./pure-css-config')
+const scssConfig = require('./scss-config')
+const sassConfig = require('./sass-config')
+const stylusConfig = require('./stylus-config')
+const imagesConfig = require('./images-config')
 
 const prodConfig = env => ({
   entry: {
@@ -19,87 +26,12 @@ const prodConfig = env => ({
   },
   module: {
     rules: [
-      {
-        test: /\.js/,
-        use: [
-          {
-            loader: 'babel-loader'
-          }
-        ],
-        exclude: /node_modules/
-      },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: miniCSSExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader'
-          }
-        ]
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          {
-            loader: miniCSSExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'sass-loader'
-          }
-        ]
-      },
-      {
-        test: /\.styl$/,
-        use: [
-          {
-            loader: miniCSSExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader'
-          },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'stylus-loader'
-          }
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          {
-            loader: miniCSSExtractPlugin.loader
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1
-            },
-          },
-          {
-            loader: 'postcss-loader'
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-             includePaths: ["src/styles/config"]
-           }
-          }
-        ]
-      },
+      babelConfig,
+      cssConfig,
+      scssConfig,
+      sassConfig,
+      stylusConfig,
+      imagesConfig,
       {
         test: /\.html$/,
         use: [
@@ -110,43 +42,25 @@ const prodConfig = env => ({
             }
           }
         ]
-      },
-      {
-        test: /\.(jpg|jpeg|gif|png)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[name].[ext]'
-            }
-          }
-        ]
       }
     ]
   },
   plugins: [
     new htmlWebpackPlugin({
       template: './src/index.ejs',
-      title: 'Mario Brusarosco'
+      title: 'Webpack Boilterplate'
     }),
     new optimizeCSSAssets(),
     new miniCSSExtractPlugin({
-      filename: "[name]-bundle-[hash:8].css"
+      filename: '[name]-bundle-[hash:8].css'
     }),
-    new webpack.DefinePlugin({
-      'ENV': JSON.stringify(process.env.ENV),
-      'APP_NAME': JSON.stringify(process.env.APP_NAME)
+    globalVariables,
+    globalVendors,
+    new compressionPlugin({
+      algorithm: 'gzip'
     }),
-		new webpack.ProvidePlugin({
-			'React': 'react',
-		})
-  ],
-	resolve: {
-		modules: [
-			path.resolve('src'),
-			path.resolve('node_modules')
-		]
-	}
+    new brotliPlugin()
+  ]
 })
 
 module.exports = prodConfig()
