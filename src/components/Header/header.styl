@@ -1,0 +1,22 @@
+.header
+	display flex
+	justify-content space-between
+	padding 2rem
+	text-transform uppercase
+	font-family $mainFont
+	color get($colors, 'blue')
+	background-color get($colors, 'darkBlue')
+
+.sectionId
+	position relative
+	display flex
+	align-items center
+	font-size 1.3rem
+
+	&:before
+		content ''
+		display inline-block
+		width 2rem
+		height 0.1rem
+		margin-right 0.7rem
+		background-color get($colors,'white')

@@ -1,0 +1,101 @@
+.menuLink
+	padding 2.5rem 2rem
+	font-size 1.4rem
+	opacity 0
+	transform translateY(-2rem)
+	cursor pointer
+	will-change opacity, transform
+	transition-property opacity, transform
+	transition-duration .9s
+	transition-timing-function ease
+a
+	display flex
+	align-items center
+
+.linkText
+	transform translateX(1.2rem)
+	color: get($colors, 'white')
+	will-change color, transform
+	transition color .2s ease-in-out,
+		transform 0.45s cubic-bezier(0.44, -0.33, 0.82, 1.15)
+
+.iconSvg
+	width 3rem
+	height 3rem
+
+.pulseEffect
+	display flex
+	justify-content center
+	align-items center
+	position relative
+
+	&:after,
+	&:before
+		content ''
+		display flex
+		position absolute
+		width 100%
+		height 100%
+		border-radius 50%
+		border 0.1rem solid get($colors, 'rose')
+		transform scale(1)
+		opacity 0
+		will-change transform, opacity
+
+// @keyframes pulseEffect
+// 	0%
+// 		opacity 0
+// 	40%
+// 		opacity 1
+// 	85%
+// 		opacity 0
+// 	100%
+// 		transform scale(2.8)
+
+.outerCircle
+	fill none
+	stroke-width 0.2rem
+	stroke get($colors, 'white')
+	transform rotate(35deg)
+	will-change stroke
+	transition stroke 0.35s ease-in
+	transform-box fill-box
+	transform-origin center
+
+.innerCircle
+	fill get($colors, 'white')
+	transform scale(0.4)
+	transform-origin center
+	will-change fill
+	transition fill 0.35s ease-in
+.x
+	display none
+
+// States
+.linkIsActive
+	.linkText
+		transform translateX(2.5rem)
+		color get($colors, 'rose')
+
+	.pulseEffect
+		&:before
+			animation pulseEffect 4s infinite
+		&:after
+			animation pulseEffect 4s .8s infinite
+
+	.innerCircle
+		fill get($colors, 'rose')
+
+	.outerCircle
+		stroke get($colors, 'rose')
+
+// Global
+:global(.menuIsOpened) .menuLink
+	opacity 1
+	transform translateY(0)
+	transition-delay .5s
+
+	for link in 0..10
+		&:nth-child({link})
+			transition-duration (.25 * link)s
+

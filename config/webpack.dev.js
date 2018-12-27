@@ -1,14 +1,18 @@
 const path = require("path")
 const webpack = require("webpack")
 const htmlWebpackPlugin = require("html-webpack-plugin")
+
+// Configuration files
 const globalVariables = require('./global-variables')
 const globalVendors = require('./global-vendors')
+const resolveConfig = require('./resolve-config')
 const babelConfig = require('./babel-config')
 const cssConfig = require('./pure-css-config')
 const scssConfig = require('./scss-config')
 const sassConfig = require('./sass-config')
 const stylusConfig = require('./stylus-config')
 const imagesConfig = require('./images-config')
+const markdownConfig = require('./markdown-config')
 
 const devConfig = env => ({
   entry: {
@@ -17,7 +21,8 @@ const devConfig = env => ({
       "webpack-hot-middleware/client",
       "./src/main.js"]
   },
-  mode: "development",
+	mode: "development",
+	devtool: 'sourcemap',
   output: {
     filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
@@ -37,6 +42,7 @@ const devConfig = env => ({
       sassConfig,
       stylusConfig,
       imagesConfig,
+      markdownConfig,
       {
         test: /\.html$/,
         use: [
@@ -47,7 +53,7 @@ const devConfig = env => ({
             }
           }
         ]
-      }
+      },
     ]
   },
   plugins: [
@@ -57,8 +63,9 @@ const devConfig = env => ({
     }),
     new webpack.HotModuleReplacementPlugin(),
     globalVariables,
-    globalVendors
-  ]
+    globalVendors,
+  ],
+  ...resolveConfig,
 })
 
 module.exports = devConfig()

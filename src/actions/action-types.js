@@ -1,0 +1,3 @@
+export const LOCK_HEADER = 'LOCK_HEADER'
+export const TOGGLE_MENU = 'TOGGLE_MENU'
+export const SELECT_SECTION = 'SELECT_SECTION'

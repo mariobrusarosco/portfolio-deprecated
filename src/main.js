@@ -4,5 +4,4 @@ if(module.hot) {
 }
 import './app.js';
 
-console.log(`Environment: ${ENV}`);
 console.log(`App name: ${APP_NAME}`);

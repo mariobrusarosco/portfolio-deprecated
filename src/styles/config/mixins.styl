@@ -1,0 +1,10 @@
+get(object, property)
+	return object[property]
+
+above(measure, dimension = 'width')
+	@media(min-{dimension}: measure px) 
+		{ block }
+
+below(measure, dimension = 'width')
+	@media(max-{dimension}: (measure - 1) px) 
+		{ block }

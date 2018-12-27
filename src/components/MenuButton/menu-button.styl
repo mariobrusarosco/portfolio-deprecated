@@ -1,0 +1,58 @@
+
+.menu
+	display flex
+	align-items center
+	cursor pointer
+
+.iconText
+	font-size 1.2rem
+	will-change color, transform
+	transition transform .35s .35s ease-in,
+		color .5s ease
+
+	.menuIsOpened &
+		color get($colors, 'white')
+		transform translateX(-5px)
+		transition transform .35s ease-in,
+			color .5s ease
+
+.iconSvg
+	width 4rem
+	height 4rem
+
+.outerCircle,
+.innerCircle
+	transform-origin center
+	transform-box fill-box
+
+.outerCircle
+	fill none
+	stroke-width 0.2rem
+	stroke get($colors, 'blue')
+	stroke-dasharray 95px
+	transform rotate(-145deg)
+	will-change stroke, stroke-dashoffset
+	transition stroke .45s ease-in, stroke-dashoffset .8s cubic-bezier(0.92,-0.35, 0.4, 0.93)
+
+	.menuIsOpened &
+		stroke get($colors, 'white')
+		stroke-dashoffset: 190px;
+
+.innerCircle
+	fill get($colors, 'blue')
+	transform scale(-0.4)
+	will-change transform, fill
+	transition transform .6s cubic-bezier(0.82, -0.48, 0.49, 0.85)
+
+	.menuIsOpened &
+		transform scale(1)
+		fill get($colors, 'white')
+.x
+	stroke transparent
+	stroke-width 0.2rem
+	will-change stroke
+	transition stroke .35s ease-out
+
+	.menuIsOpened &
+		stroke get($colors, 'darkBlue')
+		transition stroke .35s .35s ease-out
