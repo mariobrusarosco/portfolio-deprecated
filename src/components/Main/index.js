@@ -1,13 +1,16 @@
-// Component
+import { BrowserRouter, Route } from 'react-router-dom'
+
+// Components
 import Header from 'components/Header'
+// Pages
+import Home from 'pages/Home'
 
-// @TODO remove 
-	import Home from 'pages/Home'
+const Main = () =>
+	<BrowserRouter>
+		<>
+			<Header />
+			<Route path="/" component={Home} exact />
+		</>
+	</BrowserRouter>
 
-const App = () => (
-	<>
-		<Header />
-		<Home />
-	</>
-)
-export default App
+export default Main

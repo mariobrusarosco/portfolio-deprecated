@@ -6,7 +6,6 @@ import store from 'store'
 // Global Styles
 import 'styles/main.styl'
 
-
 ReactDOM.render(
   <Provider store={store}>
     <Main />
