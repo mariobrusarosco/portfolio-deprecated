@@ -1,14 +1,22 @@
+.home
+	height 100%
+	display flex
+	flex-direction column
+	justify-content center
+	padding 0 2rem
+	background-color get($colors, 'darkBlue')
+	font-family $mainFont
+
 .me
-  font-size 5rem
+	padding-bottom 10rem
+	font-size 4.2rem
+	line-height 1.1
+	color get($colors, 'blue')
+	text-transform uppercase
 
-  +below(475, 'height')  
-    color gold
+.jobDescription
+	font-size 2.5rem
+	color get($colors, 'rose')
 
-  +above(475, 'height')  
-    color tomato
-
-  +below(475)  
-    text-decoration underline
-
-  +above(475)  
-    text-transform uppercase 
+.me, .jobDescription
+	font-weight 100

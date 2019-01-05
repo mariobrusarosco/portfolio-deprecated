@@ -5,14 +5,14 @@ import styles from './home.styl'
 
 const Home = () => {
   return (
-    <>
-      <div className={styles.me}>
+    <div className={styles.home}>
+      <h2 className={styles.me}>
         Mario Brusarosco
-      </div>
-      <div className={styles.jobDescription}>
+      </h2>
+      <h2 className={styles.jobDescription}>
         front end developer
-      </div>
-    </>
+      </h2>
+    </div>
   )
 }
 
