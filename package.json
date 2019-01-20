@@ -10,11 +10,11 @@
     "build": "cross-env production=true APP_NAME=WEBPACK_BOILERPALTE webpack --config=config/webpack.prod.js",
     "build:dev": "cross-env development=true APP_NAME=WEBPACK_BOILERPALTE webpack --config=config/webpack.dev.js",
     "prod": "yarn build && cross-env production=true node server/main.js",
-    "server": "serve --listen 8080 dist",
+    "server": "yarn build && serve --listen 8080 dist",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "e2e:dev": "start-server-and-test dev http-get://localhost:8080 cy:open",
-    "e2e:prod": "start-server-and-test server :8080 && cy:run"
+    "e2e:prod": "start-server-and-test server :8080 cy:run"
   },
   "license": "MIT",
   "dependencies": {
