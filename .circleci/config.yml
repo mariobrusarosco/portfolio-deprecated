@@ -6,5 +6,14 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - run: npm install
-      - run: npm run e2e:prod
+      - run:
+        name: npm-update
+        command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: 
+        name: installation
+        command: npm install
+      - run: 
+        name: production-end-to-end-test
+        command: npm run e2e:prod
